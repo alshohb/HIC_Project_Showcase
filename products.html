@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - TopTopHats LLC</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, rgb(126, 115, 115), lightgray);
+        }
+        #banner { 
+            background-image: url("hat.png"); 
+            background-size: 53%;
+            padding: 1%;
+            font-size: 300%;
+            color: darkred; 
+            text-shadow: 12px 5px black;
+        }
+        nav {
+            background-color: darkgray;
+            padding: 1%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        nav div {
+            display: flex;
+            gap: 40px;
+        }
+        nav a {
+            font-size: 120%;
+            font-weight: bold;
+            color: darkred;
+            text-decoration: none;
+            transition: all 0.5s ease;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: whitesmoke;
+        }
+        nav form {
+            display: flex;
+            align-items: center;
+        }
+        .search-bar {
+            padding: 5px;
+            font-size: 100%;
+            border-radius: 5px;
+            border: 2px solid darkred;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 5px 10px;
+            font-size: 100%;
+            border-radius: 5px;
+            border: 2px solid darkred;
+            background-color: darkred;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: crimson;
+        }
+        .promo-banner {
+            background: rgb(47, 47, 44);
+            border: 2px solid darkred;
+            color: rgb(229, 220, 220);
+            text-align: center;
+            padding: 20px;
+            margin: 20px 5%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .promo-banner h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .promo-banner p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .collection-heading {
+            text-align: center;
+            font-size: 3rem;
+            color: white;
+            background: linear-gradient(to right, rgba(128, 0, 0, 0.8), rgba(64, 0, 0, 0.8));
+            padding: 20px;
+            margin: 40px 0;
+            font-weight: bold;
+            border: 5px solid crimson;
+            border-radius: 15px; 
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 5%;
+        }
+        .product-item {
+            border: 1px solid darkred;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            text-align: center;
+            padding: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-item:hover img {
+            transform: scale(1.1);
+        }
+        .product-item h3 {
+            color: darkred;
+            font-size: 20px;
+        }
+        .product-item p {
+            font-size: 16px;
+            color: darkslategray;
+        }
+        .product-item a {
+            display: inline-block;
+            background-color: darkred;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .product-item a:hover {
+            background-color: crimson;
+        }
+        footer {
+            background: darkred;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer h3 {
+            margin: 0;
+        }
+        footer p {
+            font-size: 14px;
+        }
+        footer .promo {
+            margin: 10px 0;
+            padding: 15px;
+            background: white;
+            color: darkred;
+            border-radius: 10px;
+            display: inline-block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <h1 style="margin: 1%;">TopTopHats LLC</h1>
+    </div>
+
+    <nav>
+        <div>
+            <a href="home.html">Home</a>
+            <a href="products.html" style="text-decoration: underline;">Products</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <form onsubmit="handleSearch(event)">
+            <input type="text" class="search-bar" id="search-input" placeholder="Search Products..." />
+            <button type="submit" class="search-button">Enter</button>
+        </form>
+    </nav>
+
+    <div class="promo-banner">
+        <h2>Free Shipping on Orders Over $50!</h2>
+        <p>Enjoy free shipping on all orders above $50. Limited time only!</p>
+    </div>
+
+    <h2 class="collection-heading">Discover Our Exclusive Collection</h2>
+    <div class="product-grid">
+        <div class="product-item">
+            <img src="bigboy.png">
+            <h3>Big Boy</h3>
+            <p>$89.99</p>
+            <a href="product1.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="flower.png">
+            <h3>Flowerly</h3>
+            <p>$74.99</p>
+            <a href="product2.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="catlady1.png">
+            <h3>Creepy Cat</h3>
+            <p>$99.99</p>
+            <a href="product3.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="commando.png">
+            <h3>Commando</h3>
+            <p>$29.99</p>
+            <a href="product4.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="denim.png">
+            <h3>Denim</h3>
+            <p>$69.99</p>
+            <a href="product5.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="flameon.png">
+            <h3>Flame On</h3>
+            <p>$14.99</p>
+            <a href="product6.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="fuzzyleopard.png">
+            <h3>Fuzzy Leopard</h3>
+            <p>$79.99</p>
+            <a href="product7.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="neonnights.png">
+            <h3>Neon Nights</h3>
+            <p>$39.99</p>
+            <a href="product8.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="patriot.png">
+            <h3>Patriot</h3>
+            <p>$159.99</p>
+            <a href="product9.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="northernlights.png">
+            <h3>Northern Lights</h3>
+            <p>$129.99</p>
+            <a href="product10.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="pinkwave.png">
+            <h3>Pink Wave</h3>
+            <p>$34.99</p>
+            <a href="product11.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="Yourmajesty.png">
+            <h3>Your Majesty</h3>
+            <p>$19.99</p>
+            <a href="product12.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="tiedye.png">
+            <h3>Tie-Dye</h3>
+            <p>$49.99</p>
+            <a href="product13.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="basic.png">
+            <h3>Basic Bitch</h3>
+            <p>$129.99</p>
+            <a href="product14.html">View Product</a>
+        </div>
+        <div class="product-item">
+            <img src="redexplosion.png">
+            <h3>Red Explosion</h3>
+            <p>$19.99</p>
+            <a href="product15.html">View Product</a>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Don't Miss Out on Our Seasonal Sale!</h3>
+        <p>Use code <span class="promo">HATS20</span> for 20% off your first order!</p>
+    </footer>
+
+    <script>
+        function handleSearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const products = {
+                "big boy": "product1.html",
+                "flowerly": "product2.html",
+                "creepy cat": "product3.html",
+                "commando": "product4.html",
+                "denim": "product5.html",
+                "flame on": "product6.html",
+                "fuzzy leopard": "product7.html",
+                "neon nights": "product8.html",
+                "patriot": "product9.html",
+                "northern lights": "product10.html",
+                "pink wave": "product11.html",
+                "your majesty": "product12.html",
+                "tie-dye": "product13.html",
+                "basic bitch": "product14.html",
+                "red explosion": "product15.html"
+            };
+            const page = products[query];
+            if (page) {
+                window.location.href = page;
+            } else {
+                alert("Product not found!");
+            }
+        }
+    </script>
+</body>
+</html>
