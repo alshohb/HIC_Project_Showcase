@@ -1,0 +1,31 @@
+body {
+    margin: 0; padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, white, lightgray);
+}
+
+#banner{ 
+    background-image: url("hat.png"); 
+    background-size: 53%;
+    padding: 1%;
+    font-size: 300%;
+    color: darkred; text-shadow: 12px 5px black;
+}
+
+nav {
+    background-color: darkgray;
+    padding: 1%;
+}
+
+nav a{
+    font-size: 120%;
+    font-weight: bold;
+    color: darkred;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: whitesmoke;
+  }
