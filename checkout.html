@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - TopTopHats LLC</title>
     <link rel="stylesheet" href="assets/css/everyPage.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Banner Section -->
@@ -84,11 +85,18 @@
             renderSummary();
 
             checkoutForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                alert('Order placed successfully! Thank you for shopping with us.');
-                localStorage.removeItem('cartItems'); // Clear cart after order
-                window.location.href = 'home.html'; // Redirect to home page
-            });
+    event.preventDefault();
+    Swal.fire({
+        icon: 'success',
+        title: 'Order Placed',
+        text: 'Thank you for shopping with us! Your order has been placed successfully.',
+        confirmButtonText: 'Return to Home'
+    }).then(() => {
+        localStorage.removeItem('cartItems'); // Clear cart after order
+        window.location.href = 'home.html'; // Redirect to home page
+    });
+});
+
         });
     </script>
 </body>
