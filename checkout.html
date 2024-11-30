@@ -5,99 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - TopTopHats LLC</title>
     <link rel="stylesheet" href="assets/css/everyPage.css">
+    <style>
+        .checkout-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .checkout-form, .order-summary {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .checkout-form h2, .order-summary h3 {
+            margin-bottom: 15px;
+            color: darkred;
+        }
+        .checkout-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .checkout-form input, .checkout-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .order-summary .summary-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid crimson;
+        }
+        .order-summary .total {
+            font-size: 1.5rem;
+            color: darkred;
+            text-align: right;
+        }
+        .place-order-btn {
+            width: 100%;
+            background-color: crimson;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .place-order-btn:hover {
+            background-color: darkred;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <!-- Banner Section -->
+    <!-- Banner -->
     <div id="banner">
         <h1 style="margin: 1%;">TopTopHats LLC</h1>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav>
-        <div>
-            <a href="home.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="cart.html">Shopping Cart</a>
-            <a href="checkout.html" style="text-decoration: underline;">Checkout</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Shopping Cart</a>
+        <a href="checkout.html" style="text-decoration: underline;">Checkout</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Checkout Form Section -->
-    <div class="container">
-        <h2>Checkout</h2>
-        <form id="checkout-form">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+    <!-- Checkout Section -->
+    <div class="checkout-container">
+        <!-- Checkout Form -->
+        <div class="checkout-form">
+            <h2>Billing Details</h2>
+            <form id="checkout-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
 
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" required>
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
 
-            <label for="payment">Payment Method</label>
-            <select id="payment" name="payment" required>
-                <option value="credit">Credit Card</option>
-                <option value="paypal">PayPal</option>
-            </select>
+                <label for="payment">Payment Method</label>
+                <select id="payment" name="payment" required>
+                    <option value="credit">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                </select>
 
-            <div id="order-summary">
-                <h3>Order Summary</h3>
-                <div id="summary-items">
-                    <!-- Items will load dynamically -->
-                </div>
-                <p><strong>Total: $<span id="order-total">0.00</span></strong></p>
+                <button type="submit" class="place-order-btn">Place Order</button>
+            </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="summary-items">
+                <!-- Items will load dynamically -->
             </div>
-
-            <button type="submit">Place Order</button>
-        </form>
+            <p class="total"><strong>Total: $<span id="order-total">0.00</span></strong></p>
+        </div>
     </div>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
         <h3>Don't Miss Out on Our Seasonal Sale!</h3>
         <p>Use code <span class="promo">HATS20</span> for 20% off your first order!</p>
     </footer>
 
-    <!-- Checkout Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const summaryItemsContainer = document.getElementById('summary-items');
-            const orderTotalElement = document.getElementById('order-total');
-            const checkoutForm = document.getElementById('checkout-form');
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-            const renderSummary = () => {
-                summaryItemsContainer.innerHTML = '';
-                let total = 0;
-                cartItems.forEach(item => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('summary-item');
-                    itemDiv.innerHTML = `
-                        <p>${item.name} - $${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>
-                    `;
-                    summaryItemsContainer.appendChild(itemDiv);
-                    total += item.price * item.quantity;
-                });
-                orderTotalElement.textContent = total.toFixed(2);
-            };
-
-            renderSummary();
-
-            checkoutForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    Swal.fire({
-        icon: 'success',
-        title: 'Order Placed',
-        text: 'Thank you for shopping with us! Your order has been placed successfully.',
-        confirmButtonText: 'Return to Home'
-    }).then(() => {
-        localStorage.removeItem('cartItems'); // Clear cart after order
-        window.location.href = 'home.html'; // Redirect to home page
-    });
-});
-
-        });
-    </script>
+    <script src="assets/js/integration.js"></script>
 </body>
 </html>
