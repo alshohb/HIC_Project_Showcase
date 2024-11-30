@@ -3,70 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
+    <title>Checkout - TopTopHats LLC</title>
+    <link rel="stylesheet" href="assets/css/everyPage.css">
 </head>
 <body>
+    <!-- Banner Section -->
+    <div id="banner">
+        <h1 style="margin: 1%;">TopTopHats LLC</h1>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <a href="home.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="checkout.html" style="text-decoration: underline;">Checkout</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Checkout Form Section -->
     <div class="container">
         <h2>Checkout</h2>
         <form id="checkout-form">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
+
             <label for="address">Address</label>
             <input type="text" id="address" name="address" required>
+
             <label for="payment">Payment Method</label>
             <select id="payment" name="payment" required>
                 <option value="credit">Credit Card</option>
                 <option value="paypal">PayPal</option>
             </select>
+
+            <div id="order-summary">
+                <h3>Order Summary</h3>
+                <div id="summary-items">
+                    <!-- Items will load dynamically -->
+                </div>
+                <p><strong>Total: $<span id="order-total">0.00</span></strong></p>
+            </div>
+
             <button type="submit">Place Order</button>
         </form>
     </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <h3>Don't Miss Out on Our Seasonal Sale!</h3>
+        <p>Use code <span class="promo">HATS20</span> for 20% off your first order!</p>
+    </footer>
+
+    <!-- Checkout Script -->
     <script>
-        document.getElementById('checkout-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Order placed successfully!');
-            localStorage.removeItem('cartItems'); // Clear cart
+        document.addEventListener('DOMContentLoaded', () => {
+            const summaryItemsContainer = document.getElementById('summary-items');
+            const orderTotalElement = document.getElementById('order-total');
+            const checkoutForm = document.getElementById('checkout-form');
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            const renderSummary = () => {
+                summaryItemsContainer.innerHTML = '';
+                let total = 0;
+                cartItems.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('summary-item');
+                    itemDiv.innerHTML = `
+                        <p>${item.name} - $${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>
+                    `;
+                    summaryItemsContainer.appendChild(itemDiv);
+                    total += item.price * item.quantity;
+                });
+                orderTotalElement.textContent = total.toFixed(2);
+            };
+
+            renderSummary();
+
+            checkoutForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                alert('Order placed successfully! Thank you for shopping with us.');
+                localStorage.removeItem('cartItems'); // Clear cart after order
+                window.location.href = 'home.html'; // Redirect to home page
+            });
         });
     </script>
 </body>
 </html>
-
