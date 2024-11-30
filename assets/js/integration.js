@@ -43,3 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmButtonText: 'Continue Shopping'
         });
     }
+});
