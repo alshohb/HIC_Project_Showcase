@@ -4,8 +4,8 @@ body {
     background: linear-gradient(to right, white, lightgray);
 }
 
-#banner{ 
-    background-image: url("hat.png"); 
+#banner{
+    background-image: url("hat.png");
     background-size: 53%;
     padding: 1%;
     font-size: 300%;
@@ -29,3 +29,14 @@ nav a:hover {
     text-decoration: underline;
     color: whitesmoke;
   }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.product-item img, #product-image {
+    width: 200px;
+    height: 200px;
+}
