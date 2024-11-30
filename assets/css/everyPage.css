@@ -4,39 +4,54 @@ body {
     background: linear-gradient(to right, white, lightgray);
 }
 
-#banner{
-    background-image: url("hat.png");
-    background-size: 53%;
+#banner {
+    background-image: url("assets/imgs/hat.png"); /* Ensure the path is correct */
+    background-size: cover;
     padding: 1%;
-    font-size: 300%;
-    color: darkred; text-shadow: 12px 5px black;
+    font-size: 3rem;
+    color: darkred;
+    text-shadow: 2px 2px 5px black;
 }
 
 nav {
     background-color: darkgray;
     padding: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav a{
-    font-size: 120%;
+nav a {
+    font-size: 1.2rem;
     font-weight: bold;
     color: darkred;
     text-decoration: none;
-    transition: all 0.5s ease;
+    margin: 0 10px;
+    transition: color 0.5s ease;
 }
 
 nav a:hover {
+    color: white;
     text-decoration: underline;
-    color: whitesmoke;
+}
+
+
+  /* General image constraints */
+  img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-}
+  /* Specific image sizes for product items */
+  .product-item img, #product-image, .cart-product img {
+      width: 150px; /* Adjust based on design */
+      height: 150px;
+  }
 
-.product-item img, #product-image {
-    width: 200px;
-    height: 200px;
-}
+  /* Hero section image */
+  .hero-section img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+  }
