@@ -48,10 +48,13 @@ nav a:hover {
 
 /* Hero Section */
 .hero-section img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    width: 100%; /* Keep full width for responsiveness */
+    max-height: 400px; /* Limit the height to 400px */
+    object-fit: cover; /* Maintain aspect ratio while filling the space */
+    border-radius: 10px; /* Optional: Add rounded corners for aesthetics */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow effect */
 }
+
 
 .hero-text {
     position: relative;
