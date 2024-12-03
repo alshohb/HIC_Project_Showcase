@@ -7,20 +7,29 @@
     <link rel="stylesheet" href="assets/css/everyPage.css" />
     <style>
         .product-details-container {
-            max-width: 800px;
-            margin: 0 auto;
+            display: flex;
+            margin-left: 20px;
             padding: 20px;
             text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
         }
         .product-image {
             width: 100%;
             max-width: 400px;
-            margin: 0 auto;
             display: block;
         }
-        .product-info {
+        .product-information {
             text-align: left;
             margin-top: 20px;
+        }
+        #product-name {
+            font-size: 2rem;
+        }
+        #product-price {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
         }
         .add-to-cart-btn {
             background-color: darkred;
@@ -57,10 +66,12 @@
     <!-- Product Details Section -->
     <div class="product-details-container">
         <img id="product-image" class="product-image" src="assets/imgs/default.png" alt="Product Image" />
-        <h2 id="product-name">Product Name</h2>
-        <p id="product-price">$0.00</p>
-        <p id="product-description">Product description goes here.</p>
-        <button class="add-to-cart-btn" id="add-to-cart-btn">Add to Cart</button>
+        <div class="product-information">
+            <h2 id="product-name">Product Name</h2>
+            <p id="product-description">Product description goes here.</p>
+            <p id="product-price">$0.00</p>
+            <button id="add-to-cart-btn" class="add-to-cart-btn">Add to Cart</button>
+        </div>
     </div>
 
     <!-- Footer Section -->
@@ -70,10 +81,8 @@
     </footer>
 
     <script>
-        // Example product data (loaded dynamically)
         const productData = localStorage.getItem("product");
         const product = JSON.parse(productData);
-        console.log("Product Details:", product);
 
         document.addEventListener("DOMContentLoaded", () => {
             // Populate product details
