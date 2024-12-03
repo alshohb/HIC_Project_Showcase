@@ -7,20 +7,39 @@
     <link rel="stylesheet" href="assets/css/everyPage.css" />
     <style>
       .product-details-container {
-        max-width: 800px;
-        margin: 0 auto;
+        display: flex;
+        margin-left: 20px;
         padding: 20px;
         text-align: center;
+        align-items: left;
+        justify-content: center;
+        gap: 20px;
       }
+      .product-information > #product-description {
+        border-bottom: 2px solid black; /* Add a black border to each item */
+        padding: 10px; /* Optional: Adds padding inside each item */
+      }
+
       .product-image {
         width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
+        max-width: 600px;
         display: block;
       }
       .product-info {
         text-align: left;
         margin-top: 20px;
+      }
+
+      #product-name {
+        font-size: 300%;
+        width: 100%;
+      }
+      #product-description p {
+        border: 5px black;
+      }
+      #product-price {
+        font-size: 300%;
+        margin-bottom: 5px;
       }
       .add-to-cart-btn {
         background-color: darkred;
@@ -62,10 +81,14 @@
         src="assets/imgs/default.png"
         alt="Product Image"
       />
-      <h2 id="product-name">Product Name</h2>
-      <p id="product-price">$0.00</p>
-      <p id="product-description">Product description goes here.</p>
-      <button id="add-to-cart-btn" class="add-to-cart-btn">Add to Cart</button>
+      <div class="product-information">
+        <h2 id="product-name">Product Name</h2>
+        <p id="product-description">Product description goes here.</p>
+        <p id="product-price">$0.00</p>
+        <button id="add-to-cart-btn" class="add-to-cart-btn">
+          Add to Cart
+        </button>
+      </div>
     </div>
 
     <!-- Footer Section -->
