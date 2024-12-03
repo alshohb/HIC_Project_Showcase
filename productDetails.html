@@ -100,9 +100,9 @@
             const cartItems =
               JSON.parse(localStorage.getItem("cartItems")) || [];
             const existingItemIndex = cartItems.findIndex(
-              (item) => item.id === product.id
+              (item) => item.name === product.name
             );
-
+            console.log(product);
             if (existingItemIndex > -1) {
               cartItems[existingItemIndex].quantity += 1;
             } else {
