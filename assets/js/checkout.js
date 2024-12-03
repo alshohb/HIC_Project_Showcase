@@ -12,8 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const summaryItem = document.createElement('div');
         summaryItem.classList.add('summary-item');
         summaryItem.innerHTML = `
-            <p>${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}</p>
-        `;
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;">
+        <p>${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}</p>
+    </div>
+`;
+
         summaryItemsContainer.appendChild(summaryItem);
         total += item.price * item.quantity;
     });

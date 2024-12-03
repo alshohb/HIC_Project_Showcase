@@ -1,118 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Details - TopTopHats LLC</title>
     <link rel="stylesheet" href="assets/css/everyPage.css" />
     <style>
-      .product-details-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-      }
-      .product-image {
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
-        display: block;
-      }
-      .product-info {
-        text-align: left;
-        margin-top: 20px;
-      }
-      .add-to-cart-btn {
-        background-color: darkred;
-        color: white;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-      .add-to-cart-btn:hover {
-        background-color: crimson;
-      }
+        .product-details-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .product-image {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+        }
+        .product-info {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .add-to-cart-btn {
+            background-color: darkred;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .add-to-cart-btn:hover {
+            background-color: crimson;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Banner Section -->
     <div id="banner">
-      <h1 style="margin: 1%">TopTopHats LLC</h1>
+        <h1 style="margin: 1%">TopTopHats LLC</h1>
     </div>
 
     <!-- Navigation Bar -->
     <nav>
-      <a href="home.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="cart.html">Shopping Cart</a>
-      <a href="checkout.html">Checkout</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+        <a href="home.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Shopping Cart</a>
+        <a href="checkout.html">Checkout</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <!-- Product Details Section -->
     <div class="product-details-container">
-      <img
-        id="product-image"
-        class="product-image"
-        src="assets/imgs/default.png"
-        alt="Product Image"
-      />
-      <h2 id="product-name">Product Name</h2>
-      <p id="product-price">$0.00</p>
-      <p id="product-description">Product description goes here.</p>
-      <button id="add-to-cart-btn" class="add-to-cart-btn">Add to Cart</button>
+        <img id="product-image" class="product-image" src="assets/imgs/default.png" alt="Product Image" />
+        <h2 id="product-name">Product Name</h2>
+        <p id="product-price">$0.00</p>
+        <p id="product-description">Product description goes here.</p>
+        <button class="add-to-cart-btn" id="add-to-cart-btn">Add to Cart</button>
     </div>
 
     <!-- Footer Section -->
     <footer>
-      <h3>Don't Miss Out on Our Seasonal Sale!</h3>
-      <p>
-        Use code <span class="promo">HATS20</span> for 20% off your first order!
-      </p>
+        <h3>Don't Miss Out on Our Seasonal Sale!</h3>
+        <p>Use code <span class="promo">HATS20</span> for 20% off your first order!</p>
     </footer>
 
-    <!-- Product Details Script -->
     <script>
-      // Example product data (normally this would be fetched dynamically)
-      const productData = localStorage.getItem("product");
-      const product = JSON.parse(productData);
-      console.log("Product Details:", product);
-      console.log(product.name);
+        // Example product data (loaded dynamically)
+        const productData = localStorage.getItem("product");
+        const product = JSON.parse(productData);
+        console.log("Product Details:", product);
 
-      document.addEventListener("DOMContentLoaded", () => {
-        // Populate product details
-        document.getElementById("product-name").textContent = product.name;
-        document.getElementById("product-price").textContent =
-          `$` + product.price;
-        document.getElementById("product-description").textContent =
-          product.description;
-        document.getElementById("product-image").src = product.image;
+        document.addEventListener("DOMContentLoaded", () => {
+            // Populate product details
+            document.getElementById("product-name").textContent = product.name;
+            document.getElementById("product-price").textContent = `$${product.price}`;
+            document.getElementById("product-description").textContent = `This is a detailed description of ${product.name}.`;
+            document.getElementById("product-image").src = product.image;
 
-        // Add to Cart functionality
-        document
-          .getElementById("add-to-cart-btn")
-          .addEventListener("click", () => {
-            const cartItems =
-              JSON.parse(localStorage.getItem("cartItems")) || [];
-            const existingItemIndex = cartItems.findIndex(
-              (item) => item.name === product.name
-            );
-            console.log(product);
-            if (existingItemIndex > -1) {
-              cartItems[existingItemIndex].quantity += 1;
-            } else {
-              cartItems.push({ ...product, quantity: 1 });
-            }
+            // Add to Cart functionality
+            document.getElementById("add-to-cart-btn").addEventListener("click", () => {
+                const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                const existingItemIndex = cartItems.findIndex(item => item.name === product.name);
 
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
-            alert(`${product.name} has been added to your cart!`);
-          });
-      });
+                if (existingItemIndex > -1) {
+                    cartItems[existingItemIndex].quantity += 1;
+                } else {
+                    cartItems.push({ ...product, quantity: 1 });
+                }
+
+                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Added to Cart',
+                    text: `${product.name} has been successfully added to your cart!`,
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
