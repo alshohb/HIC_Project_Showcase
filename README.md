@@ -30,7 +30,8 @@ cd HIC_Project
 ```
 
 Run the following command to start a simple HTTP server:
-```bash python -m http.server
+```bash
+python -m http.server
 ```
 Note: Use python3 if python doesn’t work on your system.
 
@@ -42,16 +43,17 @@ http://localhost:8000.
 ### 4. **View the Project**
 Open your browser and go to:
 ```bash http://localhost:8000 ```
-Navigate through the site:
 
-Home Page: http://localhost:8000/home.html
-Products Page: http://localhost:8000/products.html
-Cart Page: http://localhost:8000/cart.html
-Checkout Page: http://localhost:8000/checkout.html
+## Navigate through the site:
 
-Technologies Used
-Frontend: HTML, CSS, JavaScript
-Backend: Python for local server
-Libraries: SweetAlert2 for popups
+- Home Page: http://localhost:8000/home.html
+- Products Page: http://localhost:8000/products.html
+- Cart Page: http://localhost:8000/cart.html
+- Checkout Page: http://localhost:8000/checkout.html
+
+## Technologies Used
+- Frontend: HTML, CSS, JavaScript
+- Backend: Python for local server
+- Libraries: SweetAlert2 for popups
 
 
