@@ -72,12 +72,14 @@
     </div>
 
     <nav>
-        <a href="home.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="cart.html" style="text-decoration: underline;">Shopping Cart</a>
-        <a href="checkout.html">Checkout</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <div>
+            <a href="home.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html" style="text-decoration: underline;">Shopping Cart</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
     <div class="cart-container">
@@ -98,54 +100,61 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartTotalElement = document.getElementById('cart-total');
-            const checkoutButton = document.getElementById('checkout-btn');
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalElement = document.getElementById('cart-total');
+    const checkoutButton = document.getElementById('checkout-btn');
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-            const renderCart = () => {
-                cartItemsContainer.innerHTML = '';
-                if (cartItems.length === 0) {
-                    cartItemsContainer.innerHTML = '<tr><td colspan="4">Your cart is empty.</td></tr>';
-                    checkoutButton.style.display = 'none';
-                } else {
-                    checkoutButton.style.display = 'block';
-                    let total = 0;
-                    cartItems.forEach((item, index) => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td><img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;"></td>
-                            <td>${item.name}</td>
-                            <td>$${item.price} x ${item.quantity}</td>
-                            <td>$${(item.price * item.quantity).toFixed(2)}</td>
-                            <td><button class="remove-item" data-index="${index}">Remove</button></td>
-                        `;
-                        cartItemsContainer.appendChild(row);
-                        total += item.price * item.quantity;
-                    });
-                    cartTotalElement.textContent = total.toFixed(2);
-                }
-            };
+    const renderCart = () => {
+        cartItemsContainer.innerHTML = '';
+        let total = 0; // Initialize total
 
-            cartItemsContainer.addEventListener('click', (event) => {
-    if (event.target.classList.contains('remove-item')) {
-        const index = event.target.dataset.index;
-        Swal.fire({
-            icon: 'info',
-            title: 'Item Removed',
-            text: 'The item has been successfully removed from your cart.',
-            confirmButtonText: 'OK'
-        }).then(() => {
-            cartItems.splice(index, 1);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            renderCart();
-        });
-    }
+        if (cartItems.length === 0) {
+            // If the cart is empty, show a message and hide the checkout button
+            cartItemsContainer.innerHTML = '<tr><td colspan="4">Your cart is empty.</td></tr>';
+            cartTotalElement.textContent = '0.00'; // Reset total to $0.00
+            checkoutButton.style.display = 'none';
+        } else {
+            // If there are items in the cart, render them
+            checkoutButton.style.display = 'block';
+            cartItems.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;"></td>
+                    <td>${item.name}</td>
+                    <td>$${item.price} x ${item.quantity}</td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                    <td><button class="remove-item" data-index="${index}">Remove</button></td>
+                `;
+                cartItemsContainer.appendChild(row);
+                total += item.price * item.quantity; // Update total
+            });
+
+            cartTotalElement.textContent = total.toFixed(2); // Update the total display
+        }
+    };
+
+    cartItemsContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-item')) {
+            const index = event.target.dataset.index;
+
+            Swal.fire({
+                icon: 'info',
+                title: 'Item Removed',
+                text: 'The item has been successfully removed from your cart.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                // Remove the item from the array and update localStorage
+                cartItems.splice(index, 1);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                renderCart(); // Re-render the cart
+            });
+        }
+    });
+
+    renderCart(); // Initial render on page load
 });
 
-
-            renderCart();
-        });
     </script>
 </body>
 </html>
