@@ -42,7 +42,9 @@ http://localhost:8000.
 
 ### 4. **View the Project**
 Open your browser and go to:
-```bash http://localhost:8000 ```
+```bash 
+http://localhost:8000
+```
 
 ## Navigate through the site:
 
