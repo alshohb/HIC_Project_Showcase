@@ -55,13 +55,16 @@
 
     <!-- Navigation Bar -->
     <nav>
-      <a href="home.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="cart.html">Shopping Cart</a>
-      <a href="checkout.html">Checkout</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+      <div>
+          <a href="home.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="cart.html">Shopping Cart</a>
+          <a href="checkout.html">Checkout</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+      </div>
+  </nav>
+  
 
     <!-- Product Details Section -->
     <div class="product-details-container">
@@ -129,5 +132,14 @@
           });
       });
     </script>
+    <script>
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll("nav a");
+      navLinks.forEach(link => {
+          if (link.getAttribute("href") === currentPage) {
+              link.style.textDecoration = "underline";
+          }
+      });
+  </script>
   </body>
 </html>
